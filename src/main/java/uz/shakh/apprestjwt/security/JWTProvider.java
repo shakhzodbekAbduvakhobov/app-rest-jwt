@@ -2,9 +2,11 @@ package uz.shakh.apprestjwt.security;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import org.springframework.stereotype.Component;
 
 import java.util.Date;
 
+@Component
 public class JWTProvider {
 
     long expireTime = 36_000_000;
