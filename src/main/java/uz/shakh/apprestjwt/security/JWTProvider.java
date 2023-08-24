@@ -24,10 +24,26 @@ public class JWTProvider {
         return token;
     }
 
-//    public static void main(String[] args) {
-//        String generateToken = generateToken("UserName");
-//        System.out.println(generateToken);
-//    }
+    public boolean validateToken(String token){
+        try{
+            Jwts
+                    .parser()
+                    .setSigningKey(secretKey)
+                    .parseClaimsJws(token);
+            return true;
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return false;
+    }
 
-
+    public String getUsernameFromToken(String token){
+        String username = Jwts
+                .parser()
+                .setSigningKey(secretKey)
+                .parseClaimsJws(token)
+                .getBody()
+                .getSubject();
+        return username;
+    }
 }
